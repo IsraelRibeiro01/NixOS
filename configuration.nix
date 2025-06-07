@@ -26,7 +26,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
@@ -57,9 +56,11 @@
     layout = "us";
     variant = "altgr-intl";
   };
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];	
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -82,6 +83,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gaku = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "gaku";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -95,10 +97,16 @@
        fastfetch
        git
        gh
+       neovim
     #  thunderbird
     ];
   };
 
+  # Hyprland
+    programs.hyprland =  {
+      enable = true;
+      xwayland.enable = true;
+  };
   # Install firefox.
   programs.firefox.enable = true;
 
