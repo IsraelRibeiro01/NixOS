@@ -6,7 +6,6 @@
  	htop
  	ripgrep
  	fd
- 	exa
  	tree
  	bat
  	fzf

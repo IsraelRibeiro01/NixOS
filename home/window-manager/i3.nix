@@ -10,13 +10,12 @@
      keybindings = {
         "Mod4+Return" = "exec ghostty";
 	"Mod4+d" = "exec rofi -show drun";
-	"Mod4+q" = "kill"
+	"Mod4+q" = "kill";
    };
  };
 };
 
  home.packages = with  pkgs; [
-  rofi
   i3status
   dmenu
  ];

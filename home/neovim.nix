@@ -1,16 +1,5 @@
 { config, pkgs, ...}:
-
-let 
- nvimConfigDir = "/etc/nixos/dotfiles/neovim";
-
- neovimConfig = pkgs.stdenv.mkDerivation {
-   name = "neovim-config";
-   buildCommand = ''
-     mkdir -p $out
-     ln -s ${nvimConfigDir} $out/nvim
-    '';
-  };
- in
+ 
  {
    programs.neovim = {
      enable = true;
@@ -18,11 +7,8 @@ let
      vimAlias = true;
 
      extraConfig = ''
-     " << EOF
-      vim.opt.runtimepath:prepend("${nvimConfigDir}")
-      require('init')
-      EOF
-    '';
+       lua require('init')
+     '';
 
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
@@ -31,9 +17,4 @@ let
       plenary-nvim
     ];
   };
-
-  xdg.configFile."nvim" = {
-     source = "${neovimConfig}/nvim";
-     recursive = true;
-   };
  }

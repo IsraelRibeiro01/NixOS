@@ -25,7 +25,9 @@
         useGlobalPkgs = true;
 	useUserPackages = true;
 	extraSpecialArgs = { inherit inputs; };
+	backupFileExtension = "backup";
 	users.gaku = {
+	programs.zsh.enable = true;
 	imports = [ ./home.nix ];
 	  };
 	};
